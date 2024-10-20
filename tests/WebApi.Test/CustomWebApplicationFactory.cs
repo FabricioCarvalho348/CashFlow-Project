@@ -41,7 +41,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             });
     }
 
-    private void StartDatabase(CashFlowDbContext dbContext, 
+    private void StartDatabase(
+        CashFlowDbContext dbContext, 
         IPasswordEncripter passwordEncripter, 
         IAccessTokenGenerator accessTokenGenerator)
     {

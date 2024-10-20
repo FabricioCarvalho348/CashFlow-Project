@@ -20,7 +20,7 @@ public class JwtTokenGenerator : IAccessTokenGenerator
 
     public string Generate(User user)
     {
-        var claims = new List<Claim>
+        var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.Sid, user.UserIdentifier.ToString()),

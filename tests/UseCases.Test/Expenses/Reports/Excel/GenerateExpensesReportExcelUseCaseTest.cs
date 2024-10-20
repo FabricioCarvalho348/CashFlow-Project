@@ -27,7 +27,7 @@ public class GenerateExpensesReportExcelUseCaseTest
     {
         var loggedUser = UserBuilder.Build();
 
-        var useCase = CreateUseCase(loggedUser, new List<Expense>());
+        var useCase = CreateUseCase(loggedUser, []);
         
         var result = await useCase.Execute(DateOnly.FromDateTime(DateTime.Today));
         

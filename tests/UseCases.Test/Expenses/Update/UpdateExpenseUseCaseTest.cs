@@ -43,7 +43,7 @@ public class UpdateExpenseUseCaseTest
         var request = RequestExpenseJsonBuilder.Build();
         request.Title = string.Empty;
 
-        var useCase = CreateUseCase(loggedUser);
+        var useCase = CreateUseCase(loggedUser, expense);
 
         var act = async () => await useCase.Execute(expense.Id, request);
 
@@ -76,6 +76,6 @@ public class UpdateExpenseUseCaseTest
         var unitOfWork = UnitOfWorkBuilder.Build();
         var loggedUser = LoggedUserBuilder.Build(user);
         
-        return new UpdateExpenseUseCase(mapper, unitOfWork , repository, loggedUser);
+        return new UpdateExpenseUseCase(mapper, unitOfWork, repository, loggedUser);
     }
 }

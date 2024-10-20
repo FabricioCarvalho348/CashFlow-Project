@@ -11,7 +11,7 @@ namespace WebApi.Test.Login.DoLogin;
 
 public class DoLoginTest : CashFlowClassFixture
 {
-    private const string Method = "api/login";
+    private const string Method = "api/Login";
     private readonly string _name;
     private readonly string _email;
     private readonly string _password;

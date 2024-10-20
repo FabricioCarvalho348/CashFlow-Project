@@ -38,7 +38,7 @@ namespace CashFlow.Infrastructure.Migrations
                         .HasColumnName("Amount");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("DATETIME")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("Date");
 
                     b.Property<string>("Description")

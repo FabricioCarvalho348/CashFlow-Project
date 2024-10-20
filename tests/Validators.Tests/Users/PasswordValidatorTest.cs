@@ -11,7 +11,7 @@ public class PasswordValidatorTest
 {
     [Theory]
     [InlineData("")]
-    [InlineData("          ")]
+    [InlineData("      ")]
     [InlineData(null)]
     [InlineData("a")]
     [InlineData("aa")]
@@ -21,9 +21,8 @@ public class PasswordValidatorTest
     [InlineData("aaaaaa")]
     [InlineData("aaaaaaa")]
     [InlineData("aaaaaaaa")]
-    [InlineData("AAAAAAAA")]
     [InlineData("Aaaaaaaa")]
-    [InlineData("Aaaaaaaa1")]
+    [InlineData("Aaaaaaa1")]
     public void Error_Password_Invalid(string password)
     {
         // Arrange

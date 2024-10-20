@@ -31,7 +31,7 @@ public class ExpenseMap : IEntityTypeConfiguration<Expense>
             .HasColumnName("Description");
 
         builder.Property(e => e.Date)
-            .HasColumnType("DATETIME")
+            .HasColumnType("datetime(6)")
             .HasColumnName("Date")
             .IsRequired();
 

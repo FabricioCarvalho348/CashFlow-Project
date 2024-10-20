@@ -24,7 +24,7 @@ public class DeleteExpenseTest : CashFlowClassFixture
     [Fact]
     public async Task Success()
     {
-        var result = await DoDelete($"{Method}/{_expenseId}", _token);
+        var result = await DoDelete(requestUri: $"{Method}/{_expenseId}", token: _token);
 
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         

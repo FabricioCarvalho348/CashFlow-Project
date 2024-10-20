@@ -2,6 +2,6 @@
 
 public static class Roles
 {
-    public const string Admin = "Administrator";
+    public const string Admin = "administrator";
     public const string TeamMember = "teamMember";
 }

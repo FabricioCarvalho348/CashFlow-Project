@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System.Globalization;
+using System.Net;
 using System.Net.Mime;
 using FluentAssertions;
+using Xunit.Abstractions;
 
 namespace WebApi.Test.Expenses.Reports;
 
@@ -12,7 +14,7 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     private readonly string _teamMemberToken;
     private readonly DateTime _expenseDate;
     
-    public GenerateExpensesReportTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
+    public GenerateExpensesReportTest(CustomWebApplicationFactory webApplicationFactory, ITestOutputHelper testOutputHelper) : base(webApplicationFactory)
     {
         _adminToken = webApplicationFactory.UserAdmin.GetToken();
         _teamMemberToken = webApplicationFactory.UserTeamMember.GetToken();
@@ -22,7 +24,7 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     [Fact]
     public async Task Success_Pdf()
     {
-        var result = await DoGet(requestUri: $"{Method}/pdf?month={_expenseDate:Y}", token: _adminToken);
+        var result = await DoGet(requestUri: $"{Method}/pdf?month={_expenseDate.ToString("Y", CultureInfo.InvariantCulture)}", token: _adminToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -33,8 +35,8 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     [Fact]
     public async Task Success_Excel()
     {
-        var result = await DoGet(requestUri: $"{Method}/excel?month={_expenseDate:Y}", token: _adminToken);
-
+        var result = await DoGet(requestUri: $"{Method}/excel?month={_expenseDate.ToString("Y", CultureInfo.InvariantCulture)}", token: _adminToken);
+        
         result.StatusCode.Should().Be(HttpStatusCode.OK);
 
         result.Content.Headers.ContentType.Should().NotBeNull();

@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(config =>
         Name = "Authorization",
         Description = @"JWT Authorization header using the Bearer scheme.
                       Enter 'Bearer' [space] and then your token in the text input below.
-                      Example: 'Bearer 123",
+                      Example: 'Bearer 12345abcdef'",
         In = ParameterLocation.Header,
         Scheme = "Bearer",
         Type = SecuritySchemeType.ApiKey
@@ -46,12 +46,6 @@ builder.Services.AddSwaggerGen(config =>
         }
     });
     config.SwaggerDoc("v1", new OpenApiInfo { Title = "CashFlow API", Version = "v1" });
-
-    config.MapType<DateOnly>(() => new OpenApiSchema
-    {
-        Type = "string",
-        Format = "date"
-    });
 });
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));

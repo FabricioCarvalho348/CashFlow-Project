@@ -14,8 +14,8 @@ namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf;
 
 public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCase
 {
-    private const string CURRENT_SYMBOL = "€";
-    private const int HEIGHT_ROW_EXPENSE_TABLE = 25;
+    private const string CurrentSymbol = "€";
+    private const int HeightRowExpenseTable = 25;
     
     private readonly IExpensesReadOnlyRepository _repository;
     private readonly ILoggedUser _loggedUser;
@@ -51,14 +51,14 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
             var table = CreateExpenseTable(page);
 
             var row = table.AddRow();
-            row.Height = HEIGHT_ROW_EXPENSE_TABLE;
+            row.Height = HeightRowExpenseTable;
 
             AddExpenseTitle(row.Cells[0], expense.Title);
 
             AddHeaderForAmount(row.Cells[3]);
 
             row = table.AddRow();
-            row.Height = HEIGHT_ROW_EXPENSE_TABLE;
+            row.Height = HeightRowExpenseTable;
             
             row.Cells[0].AddParagraph(expense.Date.ToString("D"));
             SetStyleBaseForExpenseInformation(row.Cells[0]);
@@ -75,7 +75,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
             if (string.IsNullOrWhiteSpace(expense.Description) == false)
             {
                 var descriptionRow = table.AddRow();
-                descriptionRow.Height = HEIGHT_ROW_EXPENSE_TABLE;
+                descriptionRow.Height = HeightRowExpenseTable;
                 
                 descriptionRow.Cells[0].AddParagraph(expense.Description);
                 descriptionRow.Cells[0].Format.Font = new Font { Name = FontHelper.WORKSANS_REGULAR, Size = 14, Color = ColorsHelper.BLACK };
@@ -154,7 +154,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         
         paragraph.AddLineBreak();
         
-        paragraph.AddFormattedText($"{totalExpenses} {CURRENT_SYMBOL}", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50});
+        paragraph.AddFormattedText($"{totalExpenses} {CurrentSymbol}", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50});
     }
 
     private Table CreateExpenseTable(Section page)
@@ -196,7 +196,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
 
     private void AddAmountForExpense(Cell cell, decimal amount)
     {
-        cell.AddParagraph($"-{amount:f2} {CURRENT_SYMBOL}");
+        cell.AddParagraph($"-{amount:f2} {CurrentSymbol}");
         cell.Format.Font = new Font { Name = FontHelper.WORKSANS_REGULAR, Size = 14, Color = ColorsHelper.BLACK };
         cell.Shading.Color = ColorsHelper.WHITE;
         cell.VerticalAlignment = VerticalAlignment.Center;
