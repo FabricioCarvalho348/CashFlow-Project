@@ -14,5 +14,7 @@ public class CashFlowDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ExpenseMap());
+
+        modelBuilder.Entity<Tag>().ToTable("Tags");
     }
 }

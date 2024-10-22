@@ -45,5 +45,10 @@ public class ExpenseMap : IEntityTypeConfiguration<Expense>
             .HasColumnName("PaymentType")
             .HasMaxLength(50)
             .HasConversion<string>();
+        
+        builder.HasMany(e => e.Tags)
+            .WithOne(t => t.Expense)
+            .HasForeignKey(t => t.ExpenseId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
